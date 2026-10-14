@@ -163,7 +163,7 @@ button:focus-visible {
 
 /* ---------- Button ---------- */
 .btn {
-  width: 259px;
+  width: 230px;
   height: 45px;
   display: inline-flex;
   align-items: center;
