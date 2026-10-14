@@ -1,0 +1,875 @@
+/* =========================================================
+   Smart Clothing Ltd — Hero (responsive)
+   Desktop (1440px) uses the exact values from the Figma frame.
+   Breakpoints:  1280 · 1100 (menu) · 900 (stack) · 600 (phone)
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pad: 80px;            /* page side padding (Figma: 80px)      */
+  --blue: #10bde3;
+  --text: #333;
+  --bg: #fafafa;
+  --h1: clamp(34px, 3.75vw, 54px);   /* = 54px at 1440 */
+  --cert-scale: 1;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* Figma "text-box trim" (cap height → baseline) */
+.trim {
+  line-height: 1;
+  text-box: trim-both cap alphabetic;
+}
+
+.page {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--bg);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* =================== HEADER =================== */
+.header {
+  position: relative;
+  z-index: 20;
+  height: 73px;
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.52px;
+  white-space: nowrap;
+}
+
+.nav-wrap {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 57px;              /* 1187 → 1244 in Figma */
+}
+
+.nav {
+  width: 443px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav a {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.nav .nav-company {
+  width: 81px;
+}
+
+.work-btn {
+  width: 116px;
+  height: 30px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.header.is-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.header.is-open .menu-toggle span:nth-child(2) { opacity: 0; }
+.header.is-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* =================== HERO =================== */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 52.6471%;   /* video = 716px at 1440 */
+  padding-left: var(--pad);
+}
+
+.intro {
+  padding-top: 49px;      /* tag sits at y=122 (117 + 5) */
+  padding-right: 24px;
+  min-width: 0;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tag img {
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+}
+
+.tag span {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.24px;
+}
+
+.title {
+  margin-top: 5.5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: var(--h1);
+  line-height: 1.11111;   /* 60 / 54 */
+}
+
+.title span {
+  display: block;
+}
+
+.lead {
+  margin-top: 13.5px;
+  max-width: 560px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+.actions {
+  margin-top: 44px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 45px;
+}
+
+.btn {
+  width: 259px;
+  height: 51px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 30px;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--bg);
+  border: 1.5px solid var(--blue);
+}
+
+.btn-outline {
+  background: var(--bg);
+  color: var(--text);
+  border: 1.5px solid var(--blue);
+}
+
+/* ---- Video ---- */
+.video {
+  position: relative;
+  min-height: 386px;
+  overflow: hidden;
+}
+
+.video-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 13px;
+  right: 34px;
+  height: 31px;
+  padding: 0 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg);
+  border-radius: 5px;
+}
+
+.badge img {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.badge span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.484px;
+  white-space: nowrap;
+}
+
+.play {
+  position: absolute;
+  left: 48.18%;           /* x = 1069 in Figma */
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.play img {
+  width: 100%;
+  height: 100%;
+}
+
+.film {
+  position: absolute;
+  left: 18px;
+  bottom: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6.5px;
+}
+
+.film span {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 21.484px;
+  color: #979a9e;
+  white-space: nowrap;
+}
+
+.film img {
+  width: 170px;
+  height: 2px;
+}
+
+/* =================== CERTIFICATIONS =================== */
+.certs {
+  margin-top: 45px;
+  padding: 0 var(--pad);
+  height: 62.527px;
+  display: flex;
+  align-items: center;
+  gap: 93px;
+}
+
+.cert {
+  position: relative;
+  flex-shrink: 0;
+  width: calc(var(--w) * var(--cert-scale));
+  height: calc(var(--h) * var(--cert-scale));
+  overflow: hidden;
+}
+
+.cert img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cropped logos (Figma image crop) */
+.cert.crop img {
+  position: absolute;
+  left: 0;
+  height: var(--ih);
+  top: var(--it);
+}
+
+.cert-bsci  { --w: 138.132px; --h: 59.478px; --ih: 163.93%; --it: -15.85%; }
+.cert-oeko  { --w: 138.132px; --h: 52.082px; --ih: 147.34%; --it: -23.91%; }
+.cert-sedex { --w: 138.132px; --h: 43.025px; --ih: 178.36%; --it: -42.11%; }
+.cert-grs   { --w: 111.5px;   --h: 53px; }
+.cert-gots  { --w: 62.527px;  --h: 62.527px; }
+.cert-ocs   { --w: 62.391px;  --h: 62.235px; }
+.cert-iso   { --w: 67.537px;  --h: 62.342px; }
+
+/* =================== FEATURES =================== */
+.features {
+  margin-top: 49.473px;   /* y = 616 */
+  padding: 0 var(--pad) 33px;
+  display: grid;
+  grid-template-columns: 417fr 280fr 323fr 260fr;   /* x = 80 · 497 · 777 · 1100 */
+  align-items: start;
+}
+
+.brands-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 38px;
+  white-space: nowrap;
+}
+
+.brands-text {
+  margin: 14px 0 0 4px;
+  max-width: 363px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  white-space: nowrap;
+}
+
+.feature {
+  padding-top: 2px;
+  min-width: 0;
+}
+
+.f-icon {
+  object-fit: contain;
+}
+
+.f-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.f-text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  white-space: nowrap;
+}
+
+/* exact Figma vertical rhythm per column */
+.f1 .f-icon  { width: 52.447px; height: 46.523px; }
+.f1 .f-title { margin-top: 7.542px; line-height: 23.87px; }
+.f1 .f-text  { margin-top: 7.065px; }
+
+.f2 .f-icon  { width: 47.708px; height: 44.154px; }
+.f2 .f-title { margin-top: -4.154px; line-height: 45px; }
+.f2 .f-text  { margin-top: -4px; color: #000; }
+
+.f3 .f-icon  { width: 27.119px; height: 50.078px; }
+.f3 .f-title { margin-top: -10.078px; line-height: 45px; }
+.f3 .f-text  { margin-top: -4px; }
+
+/* =========================================================
+   ≤ 1360px — certificates spread to fit
+   ========================================================= */
+@media (max-width: 1360px) {
+  .certs {
+    justify-content: space-between;
+    gap: 24px;
+  }
+}
+
+/* =========================================================
+   ≤ 1280px — features: heading on top, 3 columns below
+   ========================================================= */
+@media (max-width: 1280px) {
+  .br-f { display: none; }
+
+  .features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 40px;
+    padding-bottom: 56px;
+  }
+
+  .brands {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  .brands-text {
+    margin: 0;
+    max-width: 420px;
+    white-space: normal;
+  }
+
+  .f-icon { height: 50px !important; width: auto !important; max-width: 56px; }
+
+  .f-title,
+  .f1 .f-title,
+  .f2 .f-title,
+  .f3 .f-title {
+    margin-top: 16px;
+    line-height: 1.3;
+    white-space: normal;
+  }
+
+  .f-text,
+  .f1 .f-text,
+  .f2 .f-text,
+  .f3 .f-text {
+    margin-top: 8px;
+    white-space: normal;
+  }
+}
+
+/* =========================================================
+   ≤ 1180px — let the lead paragraph wrap naturally
+   ========================================================= */
+@media (max-width: 1180px) {
+  .br-lead { display: none; }
+  .lead { max-width: 500px; }
+}
+
+/* =========================================================
+   901–1180px — tablet landscape (iPad etc.): keep 2 columns,
+   give text a bit more room so both buttons sit side by side
+   ========================================================= */
+@media (min-width: 901px) and (max-width: 1180px) {
+  .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+  .actions { flex-wrap: nowrap; gap: 16px; }
+  .btn {
+    flex: 1 1 0;
+    width: auto;
+    max-width: 259px;
+    min-width: 0;
+    padding: 0 10px;
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1000px) {
+  .btn { font-size: 16px; }
+}
+
+/* =========================================================
+   ≤ 1100px — hamburger menu
+   ========================================================= */
+@media (max-width: 1100px) {
+  :root { --pad: 40px; }
+
+  .menu-toggle { display: flex; }
+
+  .nav-wrap {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 8px var(--pad) 28px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    background: var(--bg);
+    border-bottom: 1px solid #e6e6e6;
+    box-shadow: 0 16px 24px -16px rgba(0, 0, 0, 0.12);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .header.is-open .nav-wrap {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+  }
+
+  .nav {
+    width: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    font-size: 18px;
+  }
+
+  .nav a,
+  .nav .nav-company {
+    width: auto;
+    padding: 16px 0;
+    border-bottom: 1px solid #ececec;
+  }
+
+  .work-btn {
+    width: 100%;
+    height: 48px;
+    border: 1.5px solid var(--blue);
+  }
+
+  .actions { gap: 16px 24px; }
+}
+
+/* =========================================================
+   ≤ 900px — tablet portrait & phones: stack text above video
+   ========================================================= */
+@media (max-width: 900px) {
+  :root { --h1: clamp(30px, 8vw, 54px); }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+
+  .intro {
+    padding: 32px var(--pad) 0;
+  }
+
+  .lead { max-width: 560px; }
+
+  .actions { margin-top: 36px; }
+
+  .video {
+    margin-top: 40px;
+    min-height: 0;
+    aspect-ratio: 716 / 386;
+  }
+
+  .certs {
+    margin-top: 40px;
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 44px;
+    --cert-scale: 0.85;
+  }
+
+  .features {
+    margin-top: 56px;
+  }
+
+  .brands {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+/* =========================================================
+   ≤ 700px — features in one column
+   ========================================================= */
+@media (max-width: 700px) {
+  .features {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .brands-title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .feature {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    column-gap: 16px;
+  }
+
+  .f-icon { grid-row: 1 / 3; }
+
+  .f-title,
+  .f1 .f-title,
+  .f2 .f-title,
+  .f3 .f-title { margin-top: 0; }
+}
+
+/* =========================================================
+   ≤ 600px — phones (iPhone SE … iPhone Pro Max, Android)
+   ========================================================= */
+@media (max-width: 600px) {
+  :root { --pad: 20px; }
+
+  .header { height: 64px; }
+
+  .brand-logo { width: 32px; height: 32px; }
+
+  .brand-name {
+    font-size: 20px;
+    letter-spacing: 0.4px;
+  }
+
+  .tag span {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .lead {
+    font-size: 15px;
+    line-height: 24px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    height: 52px;
+    font-size: 18px;
+  }
+
+  .video { aspect-ratio: 4 / 3; }
+
+  .badge {
+    top: 12px;
+    right: 12px;
+    height: 28px;
+    padding: 0 10px;
+    gap: 6px;
+  }
+
+  .badge img { width: 10px; height: 10px; }
+
+  .badge span {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .play {
+    left: 50%;
+    width: 52px;
+    height: 52px;
+    transform: translate(-50%, -50%);
+  }
+
+  .film {
+    left: 14px;
+    bottom: 12px;
+    gap: 5px;
+  }
+
+  .film span { font-size: 13px; line-height: 18px; }
+  .film img  { width: 140px; }
+
+  .certs {
+    margin-top: 36px;
+    gap: 22px 28px;
+    --cert-scale: 0.66;
+  }
+
+  .features {
+    margin-top: 48px;
+    gap: 32px;
+    padding-bottom: 48px;
+  }
+
+  .brands-title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .brands-text,
+  .f-text { font-size: 15px; line-height: 24px; }
+
+  .f-title,
+  .f1 .f-title,
+  .f2 .f-title,
+  .f3 .f-title { font-size: 18px; }
+}
+
+/* very small Android phones */
+@media (max-width: 360px) {
+  .brand-name { font-size: 18px; }
+  .certs { --cert-scale: 0.58; gap: 18px 22px; }
+}
+
+/* =========================================================
+   Marquee ("Work with us •" infinite loop) + simple reveals
+   ========================================================= */
+.work-btn { overflow: hidden; }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 8s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marquee-item { display: block; white-space: nowrap; }
+
+.marquee-dot {
+  width: 5px;
+  height: 5px;
+  margin: 0 12px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+
+.work-btn:hover .marquee-dot { background: #fff; }
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.header { animation: fade-down 0.5s ease both; }
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.js .video.reveal { transition-delay: 0.1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   Hover & interaction polish (mouse devices only)
+   ========================================================= */
+.nav a,
+.work-btn,
+.play,
+.play img,
+.cert,
+.f-icon {
+  transition: color 0.2s ease, background-color 0.2s ease,
+    border-color 0.2s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+.btn:active { transform: translateY(0) scale(0.98); }
+
+@media (hover: hover) {
+  /* Outline button → fills with brand colour */
+  .btn-outline:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -8px rgba(16, 189, 227, 0.7);
+  }
+
+  /* Coloured button → deep #333 */
+  .btn-primary:hover {
+    background: #333;
+    border-color: #333;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.45);
+  }
+
+  /* Nav links: blue on hover */
+  .nav a:not(.work-btn):hover { color: var(--blue); }
+
+  /* "Our work" bordered button fills like the outline CTA */
+  .work-btn:hover {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  /* Play button grows */
+  .play:hover img { transform: scale(1.1); }
+
+  /* Certificates: gentle lift */
+  .cert:hover { transform: translateY(-3px); }
+
+  /* Feature icons: gentle lift */
+  .feature:hover .f-icon { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
