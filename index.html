@@ -34,7 +34,7 @@
         <a href="#" class="trim">Process</a>
         <a href="#" class="trim">Insights</a>
       </nav>
-      <a href="#" class="work-btn" aria-label="Work with us"><span class="marquee-track" aria-hidden="true"><span class="marquee-group"><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i></span><span class="marquee-group"><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i></span></span></a>
+      <a href="#" class="work-btn" aria-label="Work with us"><span class="marquee-track" aria-hidden="true"><span class="marquee-group"><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i></span><span class="marquee-group"><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i><span class="marquee-item trim">Work with us</span><i class="marquee-dot" aria-hidden="true"></i></span></span></a>
     </div>
   </header>
 
@@ -71,7 +71,7 @@
         <span>FROM OUR FACTORY</span>
       </div>
 
-      <button class="play" type="button" aria-label="Play factory film">
+      <button class="play" type="button" aria-label="Play factory film" data-video="XnY3sQsPtPU" data-start="6">
         <img src="./img/dad30cf0-3c48-444b-af57-65ddbbd92579.svg" alt="">
       </button>
 
@@ -181,6 +181,26 @@
       });
     }, { threshold: 0.15 });
     els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+<script>
+  /* Click play -> load the YouTube video in the same spot */
+  (function () {
+    var btn = document.querySelector('.play');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var box = btn.closest('.video');
+      var iframe = document.createElement('iframe');
+      iframe.className = 'video-frame';
+      iframe.src = 'https://www.youtube.com/embed/' + btn.dataset.video +
+        '?autoplay=1&start=' + btn.dataset.start + '&rel=0&playsinline=1';
+      iframe.title = 'Factory film';
+      iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      iframe.allowFullscreen = true;
+      box.classList.add('is-playing');
+      box.appendChild(iframe);
+    });
   })();
 </script>
 
